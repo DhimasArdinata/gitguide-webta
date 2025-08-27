@@ -31,12 +31,12 @@
             padding: 20px;
         }
         .container {
-            max-width: 1000px; /* Lebar ditambah */
+            max-width: 1000px;
             margin: 20px auto;
             background-color: var(--container-bg-color);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 30px 50px; /* Padding disesuaikan */
+            padding: 30px 50px;
         }
         h1, h2, h3, h4 {
             color: var(--heading-color);
@@ -140,8 +140,27 @@
             border-left: 4px solid var(--note-warning-border);
         }
         .terminal-prompt {
-            color: #7ee787; /* Green for prompt */
+            color: #7ee787;
             user-select: none;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 25px 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            pre {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -255,13 +274,18 @@ Already up to date.</span></code></pre>
             <h3>2.2. Membuat Branch Tugas</h3>
             <p>Buat branch baru dari `main`. Gunakan username GitHub (huruf kecil) sebagai prefix, diikuti deskripsi tugas yang dipisahkan tanda hubung (<code>-</code>).</p>
             <h4>Contoh Eksekusi di Terminal:</h4>
-<pre><code><span class="terminal-prompt">$</span> git checkout -b dhimas/integrasi-kontrol-kamera
-<span style="color: #8b949e;">Switched to a new branch 'dhimas/integrasi-kontrol-kamera'</span></code></pre>
-            <p>Contoh lain:</p>
-            <ul>
-                <li><code>git checkout -b bagas/setup-database-sensor</code></li>
-                <li><code>git checkout -b amanda/desain-halaman-dashboard</code></li>
-            </ul>
+<pre><code><span class="terminal-prompt">$</span> # Contoh untuk Dhimas
+<span class="terminal-prompt">$</span> git checkout -b dhimas/integrasi-kontrol-kamera
+<span style="color: #8b949e;">Switched to a new branch 'dhimas/integrasi-kontrol-kamera'</span>
+
+<span class="terminal-prompt">$</span> # Contoh untuk Bagas
+<span class="terminal-prompt">$</span> git checkout -b bagas/setup-database-sensor
+
+<span class="terminal-prompt">$</span> # Contoh untuk Amanda
+<span class="terminal-prompt">$</span> git checkout -b amanda/desain-halaman-dashboard
+
+<span class="terminal-prompt">$</span> # Contoh untuk Audena
+<span class="terminal-prompt">$</span> git checkout -b audena/perbaikan-bug-login</code></pre>
 
             <h3>2.3. Melakukan Pekerjaan (Coding)</h3>
             <p>Lakukan semua perubahan kode yang diperlukan untuk tugas di dalam branch yang baru dibuat.</p>
@@ -302,7 +326,7 @@ To https://github.com/DhimasArdinata/atomic-web-ta.git
                 <li>Pastikan <code>base: main</code> dan `compare: [nama-branch-tugas]`.</li>
                 <li>Isi judul dan deskripsi PR secara detail.</li>
                 <li>Klik <strong>"Create pull request"</strong>.</li>
-                <li>Tunggu proses code review. Jika ada revisi, lakukan di lokal, lalu <code>commit</code> dan <code>push</code> lagi ke branch yang sama. PR akan otomatis ter-update.</li>
+                <li>Tunggu proses code review. Jika ada revisi, lakukan di lokal, lalu <code>commit</code> dan `push` lagi ke branch yang sama. PR akan otomatis ter-update.</li>
             </ol>
             <div class="note">
                 Siklus kerja selesai. Ulangi dari langkah <strong>2.1</strong> untuk tugas berikutnya.
