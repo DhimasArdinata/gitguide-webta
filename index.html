@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Git & GitHub - Proyek Atomic Web TA</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --container-bg-color: #161b22;
+            --text-color: #c9d1d9;
+            --heading-color: #f0f6fc;
+            --accent-color: #58a6ff;
+            --border-color: #30363d;
+            --text-muted-color: #8b949e;
+            --code-bg-color: #010409;
+            --note-info-bg: rgba(56, 139, 253, 0.1);
+            --note-info-border: #388bfd;
+            --note-warning-bg: rgba(187, 128, 9, 0.1);
+            --note-warning-border: #bb8009;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.7;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: var(--container-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px 40px;
+        }
+        h1, h2, h3 {
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        p.subtitle {
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-muted-color);
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ol {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 15px;
+        }
+        pre {
+            background-color: var(--code-bg-color);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow-x: auto;
+            position: relative;
+            font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+            font-size: 14px;
+        }
+        code {
+            font-family: inherit;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #21262d;
+            color: #f0f6fc;
+            border: 1px solid var(--border-color);
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            opacity: 0.7;
+            transition: opacity 0.2s, background-color 0.2s;
+        }
+        pre:hover .copy-btn {
+            opacity: 1;
+        }
+        .copy-btn:hover {
+            background-color: #30363d;
+        }
+        .copy-btn.copied {
+            background-color: #238636;
+            color: #ffffff;
+        }
+        strong {
+            color: var(--heading-color);
+        }
+        .note {
+            background-color: var(--note-info-bg);
+            border-left: 4px solid var(--note-info-border);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background-color: var(--note-warning-bg);
+            border-left: 4px solid var(--note-warning-border);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <h1>Panduan Setup & Alur Kerja Git & GitHub</h1>
+        <p class="subtitle">Proyek: Atomic Web TA</p>
+
+        <div class="note">
+            Dokumen ini berisi instruksi wajib untuk setup lingkungan dan alur kerja kolaborasi. Ikuti setiap langkah secara berurutan.
+        </div>
+
+        <section id="setup">
+            <h2>BAGIAN 1: SETUP AWAL (HANYA DILAKUKAN SEKALI)</h2>
+
+            <h3>1.1. Membuat & Mengonfigurasi Akun GitHub</h3>
+            <ol>
+                <li>Buka <a href="https://github.com/signup" target="_blank">https://github.com/signup</a>, buat akun.</li>
+                <li>Kirim username GitHub yang telah dibuat ke grup WhatsApp untuk diundang ke repository.</li>
+                <li>Buka email, klik "Accept Invitation" untuk menerima undangan.</li>
+                <li>Buka <a href="https://git-scm.com/downloads" target="_blank">https://git-scm.com/downloads</a>, download dan install Git dengan pengaturan default.</li>
+            </ol>
+
+            <h3>1.2. Konfigurasi Git Global</h3>
+            <ol>
+                <li>Buka VS Code. Buka Terminal (`Ctrl` + `~`).</li>
+                <li>Jalankan dua perintah berikut. Ganti placeholder <code>Nama Lengkap</code> dan <code>email.github@example.com</code> dengan data yang sesuai.
+<pre><code>git config --global user.name "Nama Lengkap"</code></pre>
+<pre><code>git config --global user.email "email.github@example.com"</code></pre>
+                </li>
+            </ol>
+
+            <h3>1.3. Mengunduh Proyek (Clone) - Prosedur Detail</h3>
+            <ol>
+                <li>
+                    <strong>Membuat Folder Kerja Utama (Di Luar VS Code):</strong>
+                    <p>Sebelum membuka VS Code, buat sebuah folder baru di lokasi yang mudah diakses (misalnya di dalam `Documents`). Beri nama folder ini <strong><code>atomic-project</code></strong>. Folder ini akan menjadi wadah untuk proyek kita.</p>
+                </li>
+                <li>
+                    <strong>Membuka Folder Kerja di VS Code:</strong>
+                    <p>Buka aplikasi VS Code. Gunakan menu <code>File > Open Folder...</code> dan pilih folder <strong><code>atomic-project</code></strong> yang baru saja dibuat.</p>
+                </li>
+                <li>
+                    <strong>Mengunduh Proyek via Terminal VS Code:</strong>
+                    <p>Setelah folder <code>atomic-project</code> terbuka, buka Terminal terintegrasi di VS Code (`Ctrl` + `~`). Terminal akan otomatis aktif di dalam folder tersebut. Jalankan perintah clone:</p>
+<pre><code>git clone https://github.com/DhimasArdinata/atomic-web-ta.git</code></pre>
+                    <p>Tunggu proses download selesai. Sekarang akan ada folder baru bernama <code>atomic-web-ta</code> di dalam folder <code>atomic-project</code>.</p>
+                </li>
+                <li>
+                    <strong>Membuka Folder Proyek Final:</strong>
+                    <p>Ini adalah langkah terakhir dan terpenting. Gunakan menu <code>File > Open Folder...</code> <strong>lagi</strong>, dan kali ini buka folder <strong><code>atomic-web-ta</code></strong>. Ini adalah folder kerja utama yang akan digunakan seterusnya.</p>
+                </li>
+            </ol>
+            <div class="note warning">
+                <strong>PENTING:</strong> Pastikan VS Code sekarang membuka folder <code>atomic-web-ta</code>, bukan folder <code>atomic-project</code>. Semua pekerjaan selanjutnya dilakukan di dalam <code>atomic-web-ta</code>.
+            </div>
+        </section>
+
+        <section id="workflow">
+            <h2>BAGIAN 2: SIKLUS KERJA PENGEMBANGAN (WAJIB DIIKUTI SETIAP MEMULAI TUGAS)</h2>
+            
+            <h3>2.1. Sinkronisasi Data Terbaru</h3>
+            <p>Selalu mulai dengan data terupdate dari server.</p>
+            <ol>
+                <li>Pindah ke branch <code>main</code>:
+<pre><code>git checkout main</code></pre>
+                </li>
+                <li>Tarik perubahan terbaru:
+<pre><code>git pull origin main</code></pre>
+                </li>
+            </ol>
+
+            <h3>2.2. Membuat Branch Tugas</h3>
+            <p>Buat branch baru dari <code>main</code>. Gunakan username GitHub (huruf kecil) sebagai prefix, diikuti deskripsi tugas yang dipisahkan tanda hubung (<code>-</code>).</p>
+            <ol>
+                <li>Format perintah: <code>git checkout -b username/deskripsi-tugas</code></li>
+                <li><strong>Contoh Eksekusi:</strong>
+<pre><code># Contoh untuk Dhimas
+git checkout -b dhimas/integrasi-kontrol-kamera
+
+# Contoh untuk Bagas
+git checkout -b bagas/setup-database-sensor
+
+# Contoh untuk Amanda
+git checkout -b amanda/desain-halaman-dashboard
+
+# Contoh untuk Audena
+git checkout -b audena/perbaikan-bug-login</code></pre>
+                </li>
+            </ol>
+
+            <h3>2.3. Melakukan Pekerjaan (Coding)</h3>
+            <p>Lakukan semua perubahan kode yang diperlukan untuk tugas di dalam branch yang baru dibuat.</p>
+
+            <h3>2.4. Menyimpan Perubahan (Commit)</h3>
+            <p>Simpan progres pekerjaan.</p>
+            <ol>
+                <li>Siapkan semua file yang berubah untuk disimpan:
+<pre><code>git add .</code></pre>
+                </li>
+                <li>Buat commit dengan pesan yang jelas tentang apa yang dilakukan:
+<pre><code>git commit -m "Menambahkan fungsi streaming video dari kamera"</code></pre>
+                </li>
+            </ol>
+
+            <h3>2.5. Mengunggah Branch (Push)</h3>
+            <p>Unggah branch lokal ke repository di GitHub.</p>
+            <ol>
+                <li>Format perintah: <code>git push origin username/deskripsi-tugas</code></li>
+                <li><strong>Contoh Eksekusi:</strong>
+<pre><code>git push origin dhimas/integrasi-kontrol-kamera</code></pre>
+                </li>
+            </ol>
+
+            <h3>2.6. Membuat Pull Request (PR) via Website GitHub</h3>
+            <p>Ajukan perubahan untuk digabungkan ke <code>main</code>. Proses ini <strong>wajib dilakukan di website GitHub</strong>.</p>
+            <ol>
+                <li>Buka halaman repository: <a href="https://github.com/DhimasArdinata/atomic-web-ta" target="_blank">https://github.com/DhimasArdinata/atomic-web-ta</a>.</li>
+                <li>Klik tombol hijau <strong>"Compare & pull request"</strong> yang muncul untuk branch yang baru di-push.</li>
+                <li>Pastikan <code>base: main</code> dan <code>compare: [nama-branch-tugas]</code>.</li>
+                <li>Isi judul dan deskripsi PR secara detail.</li>
+                <li>Klik <strong>"Create pull request"</strong>.</li>
+                <li>Tunggu proses code review. Jika ada revisi, lakukan di lokal, lalu <code>commit</code> dan <code>push</code> lagi ke branch yang sama. PR akan otomatis ter-update.</li>
+            </ol>
+            <div class="note">
+                Siklus kerja selesai. Ulangi dari langkah <strong>2.1</strong> untuk tugas berikutnya.
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('pre').forEach(pre => {
+                const codeElement = pre.querySelector('code');
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-btn';
+                copyButton.textContent = 'Copy';
+                
+                copyButton.addEventListener('click', () => {
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(codeElement.innerText).then(() => {
+                            copyButton.textContent = 'Copied!';
+                            copyButton.classList.add('copied');
+                            setTimeout(() => {
+                                copyButton.textContent = 'Copy';
+                                copyButton.classList.remove('copied');
+                            }, 2000);
+                        });
+                    }
+                });
+
+                pre.appendChild(copyButton);
+            });
+        });
+    </script>
+</body>
+</html>
